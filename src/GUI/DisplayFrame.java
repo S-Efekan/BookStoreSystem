@@ -23,8 +23,10 @@ public class DisplayFrame extends JFrame {
 	private JTextArea textArea;
 	private AddAuthor aa = new AddAuthor(this);
 	private DisplayFrame currentFrame;
+	private RemoveFrame rf = new RemoveFrame(this);
 	
 	public DisplayFrame() {
+		setTitle("BOOK STORE SYSTEM");
 		currentFrame = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 500);
@@ -85,6 +87,16 @@ public class DisplayFrame extends JFrame {
 		});
 		btnDisplayBook.setBounds(524, 149, 117, 29);
 		contentPane.add(btnDisplayBook);
+		
+		JButton btnRemove = new JButton("Remove");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				currentFrame.setVisible(false);
+				rf.setVisible(true);
+			}
+		});
+		btnRemove.setBounds(524, 257, 117, 29);
+		contentPane.add(btnRemove);
 		
 		
 

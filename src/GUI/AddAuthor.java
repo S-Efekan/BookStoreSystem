@@ -25,6 +25,7 @@ public class AddAuthor extends JFrame {
 
 	
 	public AddAuthor(DisplayFrame df) {
+		setTitle("ADD AUTHOR");
 		this.df = df;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

@@ -90,9 +90,13 @@ public class LibrarySys {
 		return true;
 	}
 	
+	public static HashMap<Integer, Authors> getMap() {
+		return authorsMap;
+	}
 	
-	
-	
+	public static ArrayList<Book> getList() {
+		return bookList;
+	}
 	
 	//End of class
 }
