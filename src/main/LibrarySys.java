@@ -1,6 +1,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 import java.util.HashMap;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +27,7 @@ public class LibrarySys {
 				authorsMap.put(authId, temp);
 				
 			}
+			sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -43,6 +46,7 @@ public class LibrarySys {
 				bookList.add(temp);
 				
 			}
+			sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -89,6 +93,23 @@ public class LibrarySys {
 		
 		return true;
 	}
+	
+	public static String getBooksByTitle() {
+		String out = "-List Of Books Sorted By Title-\n";
+		int i = 1;
+		ArrayList<Book> sorted = new ArrayList<Book>(bookList);
+		
+		Collections.sort(sorted, new BookTitleComparator());
+		
+		for (Book book : sorted) {
+			out += i+". Book;\n"+"Book ID: "+book.getId()+"\nBook Title: "+book.getTitle()+"\nAuthor of Book: "+authorsMap.get(book.getAuthorId()).getName()+"\n\n";
+			i++;
+		}
+		
+		
+		return out;
+	}
+	
 	
 	public static HashMap<Integer, Authors> getMap() {
 		return authorsMap;

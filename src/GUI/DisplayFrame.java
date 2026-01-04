@@ -24,6 +24,8 @@ public class DisplayFrame extends JFrame {
 	private AddAuthor aa = new AddAuthor(this);
 	private DisplayFrame currentFrame;
 	private RemoveFrame rf = new RemoveFrame(this);
+	private boolean isBookLoaded = false;
+	private boolean isAuthorLoaded = false;
 	
 	public DisplayFrame() {
 		setTitle("BOOK STORE SYSTEM");
@@ -47,8 +49,11 @@ public class DisplayFrame extends JFrame {
 		JButton btnDisplayAuth = new JButton("Display Author");
 		btnDisplayAuth.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LibrarySys.loadAuthors();
-				textArea.setText(LibrarySys.displayAuthors());	
+				if(!isAuthorLoaded) {
+					isAuthorLoaded = true;
+					LibrarySys.loadAuthors();
+				}
+				textArea.setText(LibrarySys.displayAuthors());
 			}
 		});
 		btnDisplayAuth.setBounds(513, 122, 138, 29);
@@ -80,12 +85,15 @@ public class DisplayFrame extends JFrame {
 		JButton btnDisplayBook = new JButton("Display Book");
 		btnDisplayBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LibrarySys.loadBooks();
+				if(!isBookLoaded) {
+					isBookLoaded = true;
+					LibrarySys.loadBooks();
+				}
 				textArea.setText(LibrarySys.displayBooks());
 				
 			}
 		});
-		btnDisplayBook.setBounds(524, 149, 117, 29);
+		btnDisplayBook.setBounds(513, 149, 138, 29);
 		contentPane.add(btnDisplayBook);
 		
 		JButton btnRemove = new JButton("Remove");
@@ -97,6 +105,15 @@ public class DisplayFrame extends JFrame {
 		});
 		btnRemove.setBounds(524, 257, 117, 29);
 		contentPane.add(btnRemove);
+		
+		JButton btnDisplayByTitle = new JButton("Display By Title");
+		btnDisplayByTitle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textArea.setText(LibrarySys.getBooksByTitle());
+			}
+		});
+		btnDisplayByTitle.setBounds(513, 95, 138, 29);
+		contentPane.add(btnDisplayByTitle);
 		
 		
 
